@@ -3,15 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Regelwerk & Tabelle</title>
+    <title>Regeln & Tabelle</title>
     <style>
         :root {
-            --bg: #111827;
-            --card: #1f2937;
-            --accent: #3b82f6;
-            --text: #f3f4f6;
-            --text-dim: #9ca3af;
-            --table-border: #374151;
+            --bg: #0f172a;
+            --card: #1e293b;
+            --accent: #38bdf8;
+            --text: #f8fafc;
+            --text-dim: #94a3b8;
+            --nav-bg: #1e293b;
+            --border: #334155;
         }
 
         body {
@@ -20,121 +21,126 @@
             color: var(--text);
             margin: 0;
             padding: 0;
+            -webkit-tap-highlight-color: transparent;
         }
 
         header {
-            padding: 20px;
+            padding: 25px 20px;
             text-align: center;
-            border-bottom: 1px solid var(--table-border);
             background: var(--bg);
             position: sticky;
             top: 0;
             z-index: 10;
         }
 
+        h1 { margin: 0; font-size: 1.4rem; font-weight: 700; letter-spacing: 0.5px; }
+
         main {
             padding: 15px;
-            padding-bottom: 100px;
+            padding-bottom: 120px;
         }
 
-        /* Sektionen umschalten */
-        .page-section { display: none; }
+        /* Seiten-Logik */
+        .page-section { display: none; animation: fadeIn 0.3s ease; }
         .page-section.active { display: block; }
 
-        /* Regel-Cards */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Karten Design */
         .rule-card {
             background: var(--card);
-            border-radius: 12px;
-            padding: 16px;
+            border-radius: 16px;
+            padding: 20px;
             margin-bottom: 16px;
-            border-left: 4px solid var(--accent);
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
         }
 
-        /* Tabellen-Design (Mobile Optimiert) */
+        .rule-title { margin: 0 0 10px 0; font-size: 1.15rem; color: var(--accent); }
+        .rule-text { color: var(--text-dim); font-size: 0.95rem; line-height: 1.6; }
+
+        /* Tabelle Mobile */
         .table-container {
             width: 100%;
-            overflow-x: auto; /* Erlaubt horizontales Scrollen am Handy */
+            overflow-x: auto;
             background: var(--card);
-            border-radius: 12px;
-            border: 1px solid var(--table-border);
+            border-radius: 16px;
+            border: 1px solid var(--border);
         }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            min-width: 400px; /* Verhindert, dass die Tabelle zu sehr gequetscht wird */
-        }
+        table { width: 100%; border-collapse: collapse; min-width: 450px; }
+        th { background: #0f172a; color: var(--accent); text-align: left; padding: 15px; font-size: 0.75rem; text-transform: uppercase; }
+        td { padding: 15px; border-top: 1px solid var(--border); font-size: 0.9rem; color: var(--text-dim); }
 
-        th, td {
-            padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid var(--table-border);
-            font-size: 0.9rem;
-        }
-
-        th {
-            background-color: #2d3748;
-            color: var(--accent);
-            text-transform: uppercase;
-            font-size: 0.75rem;
-        }
-
-        /* Bottom Navigation */
+        /* MODERNE NAVIGATION UNTEN */
         .bottom-nav {
             position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 70px;
-            background: #1f2937;
-            border-top: 1px solid var(--table-border);
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            height: 65px;
+            background: var(--nav-bg);
+            border-radius: 20px;
             display: flex;
             justify-content: space-around;
             align-items: center;
-            padding-bottom: env(safe-area-inset-bottom);
-            z-index: 100;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            border: 1px solid var(--border);
+            z-index: 1000;
         }
 
         .nav-item {
-            text-decoration: none;
-            color: var(--text-dim);
-            font-size: 0.8rem;
+            flex: 1;
             background: none;
             border: none;
+            color: var(--text-dim);
+            font-size: 0.85rem;
+            font-weight: 600;
             display: flex;
             flex-direction: column;
             align-items: center;
+            gap: 4px;
+            transition: all 0.3s ease;
             cursor: pointer;
         }
 
-        .nav-item.active { color: var(--accent); }
+        /* Icon Ersatz durch Text/Emoji */
+        .nav-icon { font-size: 1.2rem; transition: transform 0.3s ease; }
 
-        /* Overlay für Inhaltsverzeichnis */
-        #toc-overlay {
+        .nav-item.active { color: var(--accent); }
+        .nav-item.active .nav-icon { transform: scale(1.2) translateY(-2px); }
+
+        .active-indicator {
+            position: absolute;
+            bottom: 8px;
+            width: 4px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 50%;
             display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.9);
-            z-index: 200;
-            padding: 40px 20px;
         }
+        .nav-item.active .active-indicator { display: block; }
+
     </style>
 </head>
 <body>
 
     <header>
-        <h1 id="page-title">📜 Regeln</h1>
+        <h1 id="page-title">REGELN</h1>
     </header>
 
     <main>
         <div id="rules-page" class="page-section active">
-            <div class="rule-card" id="r1">
-                <h3 class="rule-title">§1 Erste Regel</h3>
-                <div class="rule-text">Hier steht dein Text bleibt.</div>
+            <div class="rule-card">
+                <h3 class="rule-title">§1 Höflichkeit</h3>
+                <div class="rule-text">Behandle jeden mit Respekt bleibt.</div>
             </div>
-            <div class="rule-card" id="r2">
-                <h3 class="rule-title">§2 Zweite Regel</h3>
-                <div class="rule-text">Noch mehr Infos hier bleibt.</div>
+            <div class="rule-card">
+                <h3 class="rule-title">§2 Spam</h3>
+                <div class="rule-text">Kein unnötiger Spam in den Kanälen bleibt.</div>
             </div>
         </div>
 
@@ -143,67 +149,64 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>Name</th>
+                            <th>User</th>
+                            <th>Rang</th>
                             <th>Status</th>
-                            <th>Info</th>
-                            <th>Spalte X</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Beispiel</td>
-                            <td>Aktiv</td>
-                            <td>Dritter Text</td>
-                            <td>Platzhalter</td>
+                            <td>Bruderherz</td>
+                            <td>Admin</td>
+                            <td>Online</td>
                         </tr>
                         <tr>
-                            <td>User 1</td>
-                            <td>Pause</td>
-                            <td>Keine Info</td>
-                            <td>Platzhalter</td>
+                            <td>Gast</td>
+                            <td>User</td>
+                            <td>Offline</td>
                         </tr>
-                        </tbody>
+                    </tbody>
                 </table>
             </div>
         </div>
     </main>
 
-    <div class="bottom-nav">
-        <button class="nav-item active" id="btn-rules" onclick="showPage('rules')">📂 Regeln</button>
-        <button class="nav-item" id="btn-table" onclick="showPage('table')">📊 Tabelle</button>
-        <button class="nav-item" onclick="toggleTOC()">📑 Index</button>
-    </div>
-
-    <div id="toc-overlay" onclick="toggleTOC()">
-        <h2 style="color: var(--accent);">Direktsprung</h2>
-        <ul style="list-style: none; padding: 0;">
-            <li><a href="#r1" style="color:white; text-decoration:none; font-size:1.5rem;">§1 Erste Regel</a></li>
-            <li><a href="#r2" style="color:white; text-decoration:none; font-size:1.5rem;">§2 Zweite Regel</a></li>
-        </ul>
-    </div>
+    <nav class="bottom-nav">
+        <button class="nav-item active" id="btn-rules" onclick="showPage('rules')">
+            <span class="nav-icon">📖</span>
+            <span>Regeln</span>
+            <div class="active-indicator"></div>
+        </button>
+        <button class="nav-item" id="btn-table" onclick="showPage('table')">
+            <span class="nav-icon">📊</span>
+            <span>Tabelle</span>
+            <div class="active-indicator"></div>
+        </button>
+    </nav>
 
     <script>
         function showPage(page) {
-            // Seiten umschalten
-            document.getElementById('rules-page').classList.remove('active');
-            document.getElementById('table-page').classList.remove('active');
-            document.getElementById('btn-rules').classList.remove('active');
-            document.getElementById('btn-table').classList.remove('active');
+            const rulesPage = document.getElementById('rules-page');
+            const tablePage = document.getElementById('table-page');
+            const btnRules = document.getElementById('btn-rules');
+            const btnTable = document.getElementById('btn-table');
+            const title = document.getElementById('page-title');
 
             if(page === 'rules') {
-                document.getElementById('rules-page').classList.add('active');
-                document.getElementById('btn-rules').classList.add('active');
-                document.getElementById('page-title').innerText = "📜 Regeln";
+                rulesPage.classList.add('active');
+                tablePage.classList.remove('active');
+                btnRules.classList.add('active');
+                btnTable.classList.remove('active');
+                title.innerText = "REGELN";
             } else {
-                document.getElementById('table-page').classList.add('active');
-                document.getElementById('btn-table').classList.add('active');
-                document.getElementById('page-title').innerText = "📊 Tabelle";
+                tablePage.classList.add('active');
+                rulesPage.classList.remove('active');
+                btnTable.classList.add('active');
+                btnRules.classList.remove('active');
+                title.innerText = "TABELLE";
             }
-        }
-
-        function toggleTOC() {
-            const toc = document.getElementById('toc-overlay');
-            toc.style.display = (toc.style.display === 'block') ? 'none' : 'block';
+            // Kleiner Vibrationseffekt am Handy (falls unterstützt)
+            if (window.navigator.vibrate) window.navigator.vibrate(5);
         }
     </script>
 
