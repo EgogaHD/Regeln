@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Regelwerk & Pyramide - Mobile Pro</title>
     <style>
-        /* FARBEN UND DESIGN */
         :root {
             --bg-color: #0f172a;
             --card-bg: #1e293b;
@@ -25,7 +24,7 @@
             overflow-x: hidden;
         }
 
-        /* FLAGGEN-LEISTE OBEN */
+        /* FLAGGEN-LEISTE */
         .top-bar {
             position: fixed; top: 0; left: 0; right: 0;
             height: 65px; background: rgba(15, 23, 42, 0.9);
@@ -40,14 +39,11 @@
         }
         .flag-btn:active { transform: scale(0.8); }
 
-        /* HAUPTINHALT */
         main { padding: 80px 10px 140px 10px; }
 
-        /* SEITEN-STEUERUNG */
         .page-view, .lang-content { display: none; }
         .active-view { display: block !important; }
 
-        /* ANIMATIONEN */
         @keyframes slideUpFade {
             from { opacity: 0; transform: translateY(30px) scale(0.9); }
             to { opacity: 1; transform: translateY(0) scale(1); }
@@ -59,82 +55,72 @@
             100% { box-shadow: 0 0 10px rgba(251, 191, 36, 0.2); }
         }
 
-        /* HEADER DESIGN */
         .section-header {
             text-align: center; font-size: 1.6rem; font-weight: 900;
-            margin-bottom: 25px; letter-spacing: 1px; color: var(--text-main);
+            margin-bottom: 20px; letter-spacing: 1px; color: var(--text-main);
         }
 
-        /* REGEL-KARTEN DESIGN */
+        .sub-header {
+            text-align: center; font-size: 0.8rem; color: var(--accent-color);
+            text-transform: uppercase; letter-spacing: 2px; margin-bottom: 15px; margin-top: 30px;
+        }
+
+        /* REGEL-KARTEN */
         .rule-card {
             background: var(--card-bg); border-radius: 20px;
             padding: 20px; margin-bottom: 15px;
             border: 1px solid var(--border-color);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
             animation: slideUpFade 0.5s ease forwards;
         }
         .rule-title { color: var(--accent-color); margin: 0 0 10px 0; font-size: 1.25rem; font-weight: 800; }
         .rule-text { color: var(--text-muted); line-height: 1.6; font-size: 1rem; }
 
-        /* PYRAMIDEN CSS */
+        /* TISCH-AUFTEILUNG CARDS */
+        .matchup-container {
+            display: flex; flex-direction: column; gap: 10px; margin-bottom: 40px;
+        }
+        .matchup-card {
+            background: rgba(56, 189, 248, 0.05);
+            border: 1px solid var(--border-color);
+            border-radius: 15px; padding: 15px;
+            display: flex; justify-content: space-between; align-items: center;
+            animation: slideUpFade 0.5s ease forwards;
+        }
+        .matchup-title { font-weight: 800; color: var(--accent-color); font-size: 0.9rem; min-width: 70px; }
+        .matchup-players { font-size: 0.9rem; color: var(--text-main); text-align: right; }
+
+        /* PYRAMIDE */
         .pyramid-container {
-            display: flex; flex-direction: column; align-items: center; gap: 30px;
-            width: 100%; padding-bottom: 20px;
+            display: flex; flex-direction: column; align-items: center; gap: 25px;
         }
-
-        .pyramid-level {
-            display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; width: 100%;
-        }
-
+        .pyramid-level { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; width: 100%; }
         .player-card {
-            background: var(--card-bg); border-radius: 15px;
-            padding: 12px; border: 1px solid var(--border-color);
+            background: var(--card-bg); border-radius: 12px;
+            padding: 10px; border: 1px solid var(--border-color);
             display: flex; flex-direction: column; align-items: center;
-            min-width: 85px; flex: 1; max-width: 105px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-            opacity: 0; /* Für Animation initial versteckt */
+            min-width: 80px; flex: 1; max-width: 100px;
+            opacity: 0;
         }
+        .active-view .player-card { animation: slideUpFade 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
 
-        /* Wenn aktiv, starte Animation */
-        .active-view .player-card {
-            animation: slideUpFade 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-        }
-
-        /* Staggered Delay (Nacheinander erscheinen) */
-        .tier-4 .player-card:nth-child(2) { animation-delay: 0.1s; }
-        .tier-4 .player-card:nth-child(3) { animation-delay: 0.2s; }
-        .tier-4 .player-card:nth-child(4) { animation-delay: 0.3s; }
-        .tier-3 .player-card:nth-child(2) { animation-delay: 0.4s; }
-        .tier-3 .player-card:nth-child(3) { animation-delay: 0.5s; }
-        .tier-2 .player-card:nth-child(2) { animation-delay: 0.6s; }
-        .tier-2 .player-card:nth-child(3) { animation-delay: 0.7s; }
-        .tier-2 .player-card:nth-child(4) { animation-delay: 0.8s; }
-        .tier-1 .player-card { animation-delay: 1.0s; animation-name: slideUpFade; }
-
-        /* Champion Glanz */
+        /* Delays für Pyramide */
+        .tier-4 .player-card { animation-delay: 0.5s; }
+        .tier-3 .player-card { animation-delay: 0.7s; }
+        .tier-2 .player-card { animation-delay: 0.9s; }
         .tier-1 .player-card { 
-            border: 2px solid var(--gold-color); 
-            max-width: 140px;
-            animation: slideUpFade 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) 1.0s forwards, 
-                       championPulse 2s infinite ease-in-out 1.6s;
+            animation-delay: 1.2s; border: 2px solid var(--gold-color); max-width: 130px;
+            animation: slideUpFade 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) 1.2s forwards, 
+                       championPulse 2s infinite ease-in-out 1.8s;
         }
 
-        .tier-2 .player-card { border: 1px solid var(--accent-color); }
+        .player-name { font-weight: 800; font-size: 0.8rem; text-align: center; }
+        .win-dots { display: flex; gap: 3px; margin-top: 5px; }
+        .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--border-color); }
+        .dot.active { background: var(--accent-color); }
+        .dot.gold { background: var(--gold-color); }
+        .level-label { width: 100%; text-align: center; font-size: 0.6rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; }
 
-        .player-name { font-weight: 800; font-size: 0.85rem; text-align: center; margin-bottom: 5px; }
-        
-        /* Siege-Indikatoren */
-        .win-dots { display: flex; gap: 4px; }
-        .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border-color); }
-        .dot.active { background: var(--accent-color); box-shadow: 0 0 5px var(--accent-color); }
-        .dot.gold { background: var(--gold-color); box-shadow: 0 0 5px var(--gold-color); }
-
-        .level-label {
-            width: 100%; text-align: center; font-size: 0.65rem; 
-            color: var(--text-muted); text-transform: uppercase; margin-bottom: 5px; letter-spacing: 2px;
-        }
-
-        /* NAVIGATION UNTEN */
+        /* NAVIGATION */
         .bottom-nav {
             position: fixed; bottom: 25px; left: 20px; right: 20px;
             background: #1e293b; height: 75px; border-radius: 25px;
@@ -144,13 +130,11 @@
         }
         .nav-button {
             background: none; border: none; color: var(--text-muted);
-            display: flex; flex-direction: column; align-items: center; gap: 5px;
-            flex: 1; transition: all 0.3s ease;
+            display: flex; flex-direction: column; align-items: center; gap: 5px; flex: 1;
         }
         .nav-button.active-nav { color: var(--accent-color); transform: translateY(-5px); }
-        .nav-icon { font-size: 1.5rem; transition: transform 0.3s; }
-        .nav-button.active-nav .nav-icon { transform: scale(1.2); }
-        .nav-label { font-size: 0.8rem; font-weight: 700; }
+        .nav-icon { font-size: 1.5rem; }
+        .nav-label { font-size: 0.75rem; font-weight: 700; }
     </style>
 </head>
 <body>
@@ -161,26 +145,40 @@
     </div>
 
     <main>
-
         <div id="page-rules" class="page-view active-view">
             <div id="lang-de" class="lang-content active-view">
                 <h1 class="section-header">📜 REGELN</h1>
                 <div class="rule-card"><h3 class="rule-title">§1 Höflichkeit</h3><div class="rule-text">Respektiere alle Spieler bleibt.</div></div>
-                <div class="rule-card"><h3 class="rule-title">§2 Spielmodus</h3><div class="rule-text">First to 2 wins bleibt am Tisch.</div></div>
+                <div class="rule-card"><h3 class="rule-title">§2 Modus</h3><div class="rule-text">First to 2 wins pro Tisch bleibt.</div></div>
             </div>
-
             <div id="lang-ru" class="lang-content">
                 <h1 class="section-header">📜 ПРАВИЛА</h1>
                 <div class="rule-card"><h3 class="rule-title">§1 Вежливость</h3><div class="rule-text">Уважайте всех игроков bleibt.</div></div>
-                <div class="rule-card"><h3 class="rule-title">§2 Режим игры</h3><div class="rule-text">Победа до 2 выигрышей bleibt.</div></div>
+                <div class="rule-card"><h3 class="rule-title">§2 Режим</h3><div class="rule-text">Победа до 2 выигрышей bleibt.</div></div>
             </div>
         </div>
 
         <div id="page-table" class="page-view">
             <h1 class="section-header" id="header-table">📊 TABELLE</h1>
 
+            <div class="sub-header" id="label-matchups">Runde 1: Aufteilung</div>
+            <div class="matchup-container">
+                <div class="matchup-card" style="animation-delay: 0.1s;">
+                    <span class="matchup-title" id="t1">Tisch 1</span>
+                    <span class="matchup-players">Wladimir, Olga, Alexander</span>
+                </div>
+                <div class="matchup-card" style="animation-delay: 0.2s;">
+                    <span class="matchup-title" id="t2">Tisch 2</span>
+                    <span class="matchup-players">Aleksei, Tanja, Egor</span>
+                </div>
+                <div class="matchup-card" style="animation-delay: 0.3s;">
+                    <span class="matchup-title" id="t3">Tisch 3</span>
+                    <span class="matchup-players">Maja, Yulija, Pavel</span>
+                </div>
+            </div>
+
+            <div class="sub-header" id="label-ranking">Aktuelles Ranking</div>
             <div class="pyramid-container">
-                
                 <div class="pyramid-level tier-1">
                     <div class="level-label">🏆 Champion</div>
                     <div class="player-card">
@@ -188,29 +186,17 @@
                         <div class="win-dots"><div class="dot gold"></div><div class="dot gold"></div></div>
                     </div>
                 </div>
-
                 <div class="pyramid-level tier-2">
                     <div class="level-label">Finalisten</div>
-                    <div class="player-card">
-                        <span class="player-name">Wladimir</span>
-                        <div class="win-dots"><div class="dot active"></div><div class="dot"></div></div>
-                    </div>
-                    <div class="player-card">
-                        <span class="player-name">Olga</span>
-                        <div class="win-dots"><div class="dot active"></div><div class="dot"></div></div>
-                    </div>
-                    <div class="player-card">
-                        <span class="player-name">Egor</span>
-                        <div class="win-dots"><div class="dot"></div><div class="dot"></div></div>
-                    </div>
+                    <div class="player-card"><span class="player-name">Wladimir</span><div class="win-dots"><div class="dot active"></div><div class="dot"></div></div></div>
+                    <div class="player-card"><span class="player-name">Olga</span><div class="win-dots"><div class="dot active"></div><div class="dot"></div></div></div>
+                    <div class="player-card"><span class="player-name">Egor</span><div class="win-dots"><div class="dot"></div><div class="dot"></div></div></div>
                 </div>
-
                 <div class="pyramid-level tier-3">
                     <div class="level-label">Halbfinale</div>
                     <div class="player-card"><span class="player-name">Aleksei</span></div>
                     <div class="player-card"><span class="player-name">Pavel</span></div>
                 </div>
-
                 <div class="pyramid-level tier-4">
                     <div class="level-label">Runde 1</div>
                     <div class="player-card"><span class="player-name">Tanja</span></div>
@@ -219,17 +205,14 @@
                 </div>
             </div>
         </div>
-
     </main>
 
     <nav class="bottom-nav">
         <button id="nav-rules" class="nav-button active-nav" onclick="showSection('rules')">
-            <span class="nav-icon">📖</span>
-            <span class="nav-label" id="label-rules">Regeln</span>
+            <span class="nav-icon">📖</span><span class="nav-label" id="label-rules">Regeln</span>
         </button>
         <button id="nav-table" class="nav-button" onclick="showSection('table')">
-            <span class="nav-icon">📊</span>
-            <span class="nav-label" id="label-table">Tabelle</span>
+            <span class="nav-icon">📊</span><span class="nav-label" id="label-table">Tabelle</span>
         </button>
     </nav>
 
@@ -243,14 +226,16 @@
             document.getElementById('label-rules').innerText = isDe ? "Regeln" : "Правила";
             document.getElementById('label-table').innerText = isDe ? "Tabelle" : "Таблица";
             document.getElementById('header-table').innerText = isDe ? "📊 TABELLE" : "📊 ТАБЛИЦА";
+            document.getElementById('label-matchups').innerText = isDe ? "Runde 1: Aufteilung" : "Раунд 1: Распределение";
+            document.getElementById('label-ranking').innerText = isDe ? "Aktuelles Ranking" : "Текущий рейтинг";
+            document.getElementById('t1').innerText = isDe ? "Tisch 1" : "Стол 1";
+            document.getElementById('t2').innerText = isDe ? "Tisch 2" : "Стол 2";
+            document.getElementById('t3').innerText = isDe ? "Tisch 3" : "Стол 3";
         }
 
         function showSection(section) {
-            const rules = document.getElementById('page-rules');
-            const table = document.getElementById('page-table');
-            
-            rules.classList.remove('active-view');
-            table.classList.remove('active-view');
+            document.getElementById('page-rules').classList.remove('active-view');
+            document.getElementById('page-table').classList.remove('active-view');
             document.getElementById('nav-rules').classList.remove('active-nav');
             document.getElementById('nav-table').classList.remove('active-nav');
             
@@ -258,12 +243,11 @@
             activePage.classList.add('active-view');
             document.getElementById('nav-' + section).classList.add('active-nav');
 
-            // Animation Reset: Triggered durch erneutes Hinzufügen der Klasse
             if(section === 'table') {
-                const cards = activePage.querySelectorAll('.player-card');
+                const cards = activePage.querySelectorAll('.player-card, .matchup-card');
                 cards.forEach(card => {
                     card.style.animation = 'none';
-                    card.offsetHeight; /* Trigger Reflow */
+                    card.offsetHeight;
                     card.style.animation = null; 
                 });
             }
