@@ -3,69 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Regeln - Mobile Only</title>
+    <title>Regelwerk & Tabelle</title>
     <style>
         :root {
-            --bg: #111827; /* Dunkler Modus für Handys (schont Akku) */
+            --bg: #111827;
             --card: #1f2937;
             --accent: #3b82f6;
             --text: #f3f4f6;
             --text-dim: #9ca3af;
+            --table-border: #374151;
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             background-color: var(--bg);
             color: var(--text);
             margin: 0;
             padding: 0;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
         }
 
-        /* Header */
         header {
             padding: 20px;
             text-align: center;
-            border-bottom: 1px solid #374151;
+            border-bottom: 1px solid var(--table-border);
             background: var(--bg);
             position: sticky;
             top: 0;
             z-index: 10;
         }
 
-        h1 { margin: 0; font-size: 1.5rem; letter-spacing: -0.025em; }
-
-        /* Content Area */
         main {
             padding: 15px;
-            padding-bottom: 100px; /* Platz für die untere Nav-Bar */
+            padding-bottom: 100px;
         }
 
+        /* Sektionen umschalten */
+        .page-section { display: none; }
+        .page-section.active { display: block; }
+
+        /* Regel-Cards */
         .rule-card {
             background: var(--card);
             border-radius: 12px;
             padding: 16px;
             margin-bottom: 16px;
             border-left: 4px solid var(--accent);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
-            scroll-margin-top: 80px; /* Damit beim Springen der Header nichts verdeckt */
         }
 
-        .rule-tag {
-            font-size: 0.7rem;
-            text-transform: uppercase;
+        /* Tabellen-Design (Mobile Optimiert) */
+        .table-container {
+            width: 100%;
+            overflow-x: auto; /* Erlaubt horizontales Scrollen am Handy */
+            background: var(--card);
+            border-radius: 12px;
+            border: 1px solid var(--table-border);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 400px; /* Verhindert, dass die Tabelle zu sehr gequetscht wird */
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--table-border);
+            font-size: 0.9rem;
+        }
+
+        th {
+            background-color: #2d3748;
             color: var(--accent);
-            font-weight: 800;
-            margin-bottom: 4px;
-            display: block;
+            text-transform: uppercase;
+            font-size: 0.75rem;
         }
 
-        .rule-title { margin: 0 0 8px 0; font-size: 1.2rem; }
-        .rule-text { color: var(--text-dim); font-size: 0.95rem; line-height: 1.4; }
-
-        /* Bottom Navigation Bar (Mobile Style) */
+        /* Bottom Navigation */
         .bottom-nav {
             position: fixed;
             bottom: 0;
@@ -73,84 +87,120 @@
             right: 0;
             height: 70px;
             background: #1f2937;
-            border-top: 1px solid #374151;
+            border-top: 1px solid var(--table-border);
             display: flex;
             justify-content: space-around;
             align-items: center;
-            padding-bottom: env(safe-area-inset-bottom); /* Support für iPhone Notch unten */
+            padding-bottom: env(safe-area-inset-bottom);
             z-index: 100;
         }
 
         .nav-item {
             text-decoration: none;
             color: var(--text-dim);
-            font-size: 0.75rem;
+            font-size: 0.8rem;
+            background: none;
+            border: none;
             display: flex;
             flex-direction: column;
             align-items: center;
+            cursor: pointer;
         }
 
-        .nav-item:active { color: var(--accent); }
+        .nav-item.active { color: var(--accent); }
 
-        /* Kleines Inhaltsverzeichnis Overlay */
+        /* Overlay für Inhaltsverzeichnis */
         #toc-overlay {
             display: none;
             position: fixed;
             inset: 0;
-            background: rgba(0,0,0,0.8);
+            background: rgba(0,0,0,0.9);
             z-index: 200;
             padding: 40px 20px;
-            overflow-y: auto;
         }
-
-        .toc-list { list-style: none; padding: 0; }
-        .toc-list li { margin-bottom: 15px; }
-        .toc-list a { color: white; text-decoration: none; font-size: 1.2rem; display: block; }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>📜 Regelwerk</h1>
+        <h1 id="page-title">📜 Regeln</h1>
     </header>
 
     <main>
-        <section id="r1" class="rule-card">
-            <span class="rule-tag">Abschnitt 01</span>
-            <h3 class="rule-title">Erste Regel</h3>
-            <div class="rule-text">Hier deinen Text einfügen bleibt. Das Design ist jetzt komplett auf "Mobile First" getrimmt bleibt.</div>
-        </section>
+        <div id="rules-page" class="page-section active">
+            <div class="rule-card" id="r1">
+                <h3 class="rule-title">§1 Erste Regel</h3>
+                <div class="rule-text">Hier steht dein Text bleibt.</div>
+            </div>
+            <div class="rule-card" id="r2">
+                <h3 class="rule-title">§2 Zweite Regel</h3>
+                <div class="rule-text">Noch mehr Infos hier bleibt.</div>
+            </div>
+        </div>
 
-        <section id="r2" class="rule-card">
-            <span class="rule-tag">Abschnitt 02</span>
-            <h3 class="rule-title">Zweite Regel</h3>
-            <div class="rule-text">Keine Sidebar mehr, die im Weg steht bleibt. Nur noch die reine Information bleibt.</div>
-        </section>
-
-        <section id="r3" class="rule-card">
-            <span class="rule-tag">Abschnitt 03</span>
-            <h3 class="rule-title">Dritte Regel</h3>
-            <div class="rule-text">Einfach diese Card kopieren für weitere Regeln bleibt.</div>
-        </section>
+        <div id="table-page" class="page-section">
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Status</th>
+                            <th>Info</th>
+                            <th>Spalte X</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Beispiel</td>
+                            <td>Aktiv</td>
+                            <td>Dritter Text</td>
+                            <td>Platzhalter</td>
+                        </tr>
+                        <tr>
+                            <td>User 1</td>
+                            <td>Pause</td>
+                            <td>Keine Info</td>
+                            <td>Platzhalter</td>
+                        </tr>
+                        </tbody>
+                </table>
+            </div>
+        </div>
     </main>
 
     <div class="bottom-nav">
-        <a href="#" class="nav-item" onclick="toggleTOC()">📂 Liste</a>
-        <a href="#r1" class="nav-item">🔝 Start</a>
-        <a href="https://github.com/EgogaHD/Regeln" class="nav-item">⚙️ Code</a>
+        <button class="nav-item active" id="btn-rules" onclick="showPage('rules')">📂 Regeln</button>
+        <button class="nav-item" id="btn-table" onclick="showPage('table')">📊 Tabelle</button>
+        <button class="nav-item" onclick="toggleTOC()">📑 Index</button>
     </div>
 
     <div id="toc-overlay" onclick="toggleTOC()">
-        <h2 style="color: var(--accent);">Springe zu...</h2>
-        <ul class="toc-list">
-            <li><a href="#r1">§1 Erste Regel</a></li>
-            <li><a href="#r2">§2 Zweite Regel</a></li>
-            <li><a href="#r3">§3 Dritte Regel</a></li>
+        <h2 style="color: var(--accent);">Direktsprung</h2>
+        <ul style="list-style: none; padding: 0;">
+            <li><a href="#r1" style="color:white; text-decoration:none; font-size:1.5rem;">§1 Erste Regel</a></li>
+            <li><a href="#r2" style="color:white; text-decoration:none; font-size:1.5rem;">§2 Zweite Regel</a></li>
         </ul>
-        <p style="color: var(--text-dim); margin-top: 30px;">(Tippen zum Schließen)</p>
     </div>
 
     <script>
+        function showPage(page) {
+            // Seiten umschalten
+            document.getElementById('rules-page').classList.remove('active');
+            document.getElementById('table-page').classList.remove('active');
+            document.getElementById('btn-rules').classList.remove('active');
+            document.getElementById('btn-table').classList.remove('active');
+
+            if(page === 'rules') {
+                document.getElementById('rules-page').classList.add('active');
+                document.getElementById('btn-rules').classList.add('active');
+                document.getElementById('page-title').innerText = "📜 Regeln";
+            } else {
+                document.getElementById('table-page').classList.add('active');
+                document.getElementById('btn-table').classList.add('active');
+                document.getElementById('page-title').innerText = "📊 Tabelle";
+            }
+        }
+
         function toggleTOC() {
             const toc = document.getElementById('toc-overlay');
             toc.style.display = (toc.style.display === 'block') ? 'none' : 'block';
