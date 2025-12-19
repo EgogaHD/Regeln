@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regelwerk</title>
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --bg-color: #f8fafc;
+            --text-color: #1e293b;
+            --card-bg: #ffffff;
+            --border-color: #e2e8f0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            display: flex;
+        }
+
+        /* Sidebar / Inhaltsverzeichnis */
+        nav {
+            width: 250px;
+            height: 100vh;
+            background: var(--card-bg);
+            border-right: 1px solid var(--border-color);
+            position: fixed;
+            padding: 2rem 1rem;
+            overflow-y: auto;
+        }
+
+        nav h2 {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            padding-left: 0.5rem;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-size: 0.95rem;
+            transition: color 0.2s;
+            padding: 0.5rem;
+            display: block;
+            border-radius: 6px;
+        }
+
+        nav ul li a:hover {
+            background-color: #f1f5f9;
+            color: var(--primary-color);
+        }
+
+        /* Hauptinhalt */
+        main {
+            margin-left: 280px;
+            padding: 3rem;
+            max-width: 800px;
+            flex-grow: 1;
+        }
+
+        header {
+            margin-bottom: 3rem;
+            border-bottom: 2px solid var(--primary-color);
+            display: inline-block;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+
+        /* Regel-Karten */
+        .rule-section {
+            margin-bottom: 3rem;
+            scroll-margin-top: 2rem;
+        }
+
+        .rule-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-left: 5px solid var(--primary-color);
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+
+        .rule-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .rule-number {
+            font-weight: bold;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+        }
+
+        .rule-title {
+            margin: 0.5rem 0;
+            font-size: 1.25rem;
+        }
+
+        .rule-content {
+            color: #475569;
+        }
+
+        @media (max-width: 768px) {
+            body { flex-direction: column; }
+            nav { position: relative; width: 100%; height: auto; border-right: none; border-bottom: 1px solid var(--border-color); }
+            main { margin-left: 0; padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <h2>Inhaltsverzeichnis</h2>
+        <ul>
+            <li><a href="#regel1">§1 Regel Name Eins</a></li>
+            <li><a href="#regel2">§2 Regel Name Zwei</a></li>
+            <li><a href="#regel3">§3 Regel Name Drei</a></li>
+            <li><a href="#regel4">§4 Regel Name Vier</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <header>
+            <h1>Unser Regelwerk</h1>
+        </header>
+
+        <section id="regel1" class="rule-section">
+            <div class="rule-card">
+                <span class="rule-number">Regel 01</span>
+                <h3 class="rule-title">Hier steht der Titel der ersten Regel</h3>
+                <div class="rule-content">
+                    <p>Hier kannst du die Beschreibung der Regel einfügen. Das Design ist schlicht gehalten, damit der Fokus auf dem Text liegt bleibt.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="regel2" class="rule-section">
+            <div class="rule-card">
+                <span class="rule-number">Regel 02</span>
+                <h3 class="rule-title">Hier steht der Titel der zweiten Regel</h3>
+                <div class="rule-content">
+                    <p>Nutze diesen Platzhalter für die Details. Die blaue Markierung links hebt die Regel optisch hervor bleibt.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="regel3" class="rule-section">
+            <div class="rule-card">
+                <span class="rule-number">Regel 03</span>
+                <h3 class="rule-title">Hier steht der Titel der dritten Regel</h3>
+                <div class="rule-content">
+                    <p>Du kannst beliebig viele dieser Sektionen kopieren und einfügen bleibt.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="regel4" class="rule-section">
+            <div class="rule-card">
+                <span class="rule-number">Regel 04</span>
+                <h3 class="rule-title">Hier steht der Titel der vierten Regel</h3>
+                <div class="rule-content">
+                    <p>Vergiss nicht, die ID im Inhaltsverzeichnis anzupassen, damit der Anker-Link funktioniert bleibt.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+</body>
+</html>
