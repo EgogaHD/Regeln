@@ -47,7 +47,7 @@
 
         /* ANIMATIONEN */
         @keyframes popIn {
-            0% { opacity: 0; transform: scale(0.8) translateY(20px); }
+            0% { opacity: 0; transform: scale(0.9) translateY(20px); }
             100% { opacity: 1; transform: scale(1) translateY(0); }
         }
 
@@ -61,9 +61,37 @@
         .sub-header { text-align: center; font-size: 0.75rem; color: var(--accent-color); text-transform: uppercase; letter-spacing: 2px; margin: 30px 0 15px 0; font-weight: 800; }
 
         /* ############################################ */
-        /* ########## COOL PLAYER CHIPS / CARDS ####### */
+        /* ########## REGEL-KARTEN DESIGN ############# */
         /* ############################################ */
-        
+        .rule-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+            animation: popIn 0.5s ease forwards;
+        }
+
+        .rule-title {
+            color: var(--accent-color);
+            font-size: 1.15rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .rule-text {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* ############################################ */
+        /* ########## TURNIER CARDS & GRIDS ########### */
+        /* ############################################ */
         .match-card {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -82,7 +110,6 @@
 
         .match-label { font-size: 0.8rem; font-weight: 900; color: var(--text-muted); text-transform: uppercase; }
 
-        /* Das Grid für die Spieler innerhalb einer Match-Card */
         .player-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -100,10 +127,8 @@
             font-size: 0.85rem;
             font-weight: 600;
             color: var(--text-muted);
-            transition: 0.3s;
         }
 
-        /* Style für den Gewinner */
         .mini-card.winner {
             border-color: var(--accent-color);
             background: var(--win-bg);
@@ -111,15 +136,11 @@
             box-shadow: 0 0 10px rgba(56, 189, 248, 0.2);
         }
 
-        .mini-card.empty {
-            border-style: dashed;
-            opacity: 0.3;
-        }
+        .mini-card.empty { border-style: dashed; opacity: 0.3; }
 
         /* ############################################ */
         /* ########## PYRAMIDE DESIGN ################# */
         /* ############################################ */
-        
         .pyramid-container { display: flex; flex-direction: column; align-items: center; gap: 20px; }
         .pyramid-level { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; width: 100%; }
         
@@ -147,7 +168,7 @@
 
         .level-label { width: 100%; text-align: center; font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1.5px; }
 
-        /* NAVIGATION */
+        /* NAVIGATION UNTEN */
         .bottom-nav {
             position: fixed; bottom: 25px; left: 20px; right: 20px;
             background: #1e293b; height: 75px; border-radius: 25px;
@@ -173,13 +194,35 @@
         <div id="page-rules" class="page-view active-view">
             <div id="lang-de" class="lang-content active-view">
                 <h1 class="section-header">📜 REGELN</h1>
-                <div class="rule-card"><h3 class="rule-title">§1 Höflichkeit</h3><div class="rule-text">Respektiere alle Mitspieler bleibt.</div></div>
-                <div class="rule-card"><h3 class="rule-title">§2 Modus</h3><div class="rule-text">First to 2 Wins pro Tisch bleibt.</div></div>
+                
+                <div class="rule-card">
+                    <div class="rule-title"><span>§1</span> Höflichkeit</div>
+                    <div class="rule-text">Respektiere alle Mitspieler bleibt. Ein höflicher Ton ist Pflicht bleibt.</div>
+                </div>
+
+                <div class="rule-card" style="animation-delay: 0.1s;">
+                    <div class="rule-title"><span>§2</span> Modus</div>
+                    <div class="rule-text">Es wird so lange gespielt, bis ein Spieler am Tisch 2 Siege erbracht hat (First to 2 Wins) bleibt.</div>
+                </div>
+
+                <div class="rule-card" style="animation-delay: 0.2s;">
+                    <div class="rule-title"><span>§3</span> 9999-Bonus</div>
+                    <div class="rule-text">Wer 4 mal die Karte '9' auf der Hand hat, erhält 100 Bonuspunkte am Ende der Runde bleibt.</div>
+                </div>
             </div>
+
             <div id="lang-ru" class="lang-content">
                 <h1 class="section-header">📜 ПРАВИЛА</h1>
-                <div class="rule-card"><h3 class="rule-title">§1 Вежливость</h3><div class="rule-text">Уважайте всех игроков bleibt.</div></div>
-                <div class="rule-card"><h3 class="rule-title">§2 Режим</h3><div class="rule-text">Победа до 2 выигрышей bleibt.</div></div>
+                
+                <div class="rule-card">
+                    <div class="rule-title"><span>§1</span> Вежливость</div>
+                    <div class="rule-text">Уважайте всех игроков bleibt. Вежливый тон обязателен bleibt.</div>
+                </div>
+
+                <div class="rule-card" style="animation-delay: 0.1s;">
+                    <div class="rule-title"><span>§2</span> Режим</div>
+                    <div class="rule-text">Игра продолжается до тех пор, пока один из игроков не одержит 2 победы (First to 2 Wins) bleibt.</div>
+                </div>
             </div>
         </div>
 
@@ -191,7 +234,7 @@
                 <div class="match-card">
                     <div class="match-title-row">
                         <span class="match-label">Tisch 1</span>
-                        <span class="status-tag" style="color:var(--win-green)">Beendet</span>
+                        <span class="status-tag" style="color:var(--win-green); font-size: 0.7rem; font-weight: bold;">BEENDET</span>
                     </div>
                     <div class="player-grid">
                         <div class="mini-card winner">Egor 🏆</div>
@@ -204,7 +247,7 @@
                 <div class="match-card">
                     <div class="match-title-row">
                         <span class="match-label">Tisch 2</span>
-                        <span class="status-tag" style="color:var(--win-green)">Beendet</span>
+                        <span class="status-tag" style="color:var(--win-green); font-size: 0.7rem; font-weight: bold;">BEENDET</span>
                     </div>
                     <div class="player-grid">
                         <div class="mini-card winner">Alexander 🏆</div>
@@ -303,14 +346,12 @@
             activePage.classList.add('active-view');
             document.getElementById('nav-' + section).classList.add('active-nav');
             
-            if(section === 'table') {
-                const elements = activePage.querySelectorAll('.player-card, .match-card');
-                elements.forEach(el => {
-                    el.style.animation = 'none';
-                    el.offsetHeight;
-                    el.style.animation = null; 
-                });
-            }
+            const elements = activePage.querySelectorAll('.player-card, .match-card, .rule-card');
+            elements.forEach(el => {
+                el.style.animation = 'none';
+                el.offsetHeight;
+                el.style.animation = null; 
+            });
             window.scrollTo(0,0);
         }
     </script>
