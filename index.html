@@ -61,9 +61,7 @@
         .section-header { text-align: center; font-size: 1.7rem; font-weight: 900; margin-bottom: 25px; }
         .sub-header { text-align: center; font-size: 0.75rem; color: var(--accent-color); text-transform: uppercase; letter-spacing: 2px; margin: 30px 0 15px 0; font-weight: 800; }
 
-        /* ############################################ */
-        /* ########## REGEL-KARTEN DESIGN ############# */
-        /* ############################################ */
+        /* REGEL-KARTEN DESIGN */
         .rule-card {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -87,9 +85,7 @@
             line-height: 1.4;
         }
 
-        /* ############################################ */
-        /* ########## TURNIER CARDS & GRIDS ########### */
-        /* ############################################ */
+        /* TURNIER CARDS */
         .match-card {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -116,7 +112,6 @@
         .win-dots { display: flex; gap: 4px; margin-top: 6px; }
         .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--border-color); }
         .dot.active { background: var(--accent-color); }
-        .dot.gold { background: var(--gold-color); }
 
         /* NAVIGATION UNTEN */
         .bottom-nav {
@@ -143,16 +138,15 @@
         <div id="page-rules" class="page-view active-view">
             <div id="lang-de" class="lang-content active-view">
                 <h1 class="section-header">📜 REGELN</h1>
-                
                 <div class="rule-card"><div class="rule-title">Bolzen: -120</div><div class="rule-text">Ein Bolzen führt zu einem Abzug von 120 Punkten.</div></div>
                 <div class="rule-card"><div class="rule-title">Bieten</div><div class="rule-text">Das Handeln erfolgt in 5er-Schritten.</div></div>
                 <div class="rule-card"><div class="rule-title">555er-Reset</div><div class="rule-text">Bei exakt 555 Punkten wird der Stand auf Null zurückgesetzt.</div></div>
                 <div class="rule-card"><div class="rule-title">Drei Fässer</div><div class="rule-text">Wer drei Mal auf dem Fass landet, fällt auf Null zurück.</div></div>
                 <div class="rule-card"><div class="rule-title">Fass-Immunität</div><div class="rule-text">Auf dem Fass werden keine Bolzen gezählt.</div></div>
-                <div class="rule-card"><div class="rule-title">Vier Neunen</div><div class="rule-text">Prämie für 4 Neunen (zählt nicht als Spielpunkte).</div></div>
+                <div class="rule-card"><div class="rule-title">Vier Neunen: +100 Bonus</div><div class="rule-text">Prämie von 100 Punkten für 4 Neunen (zählt nicht als Spielpunkte).</div></div>
                 <div class="rule-card"><div class="rule-title">Fass-Limit</div><div class="rule-text">Max. 3 Spieler auf dem Fass. Der 4. wirft alle anderen runter.</div></div>
                 <div class="rule-card"><div class="rule-title">Siegbedingung</div><div class="rule-text">Zum Sieg werden 1001 Punkte benötigt.</div></div>
-                <div class="rule-card"><div class="rule-title">Dunkel-Modus</div><div class="rule-text">Alle Punkte (und Bolzen) zählen doppelt für alle, außer Ansagen/Mariagen.</div></div>
+                <div class="rule-card"><div class="rule-title">Dunkel-Modus</div><div class="rule-text">Alle Punkte (und Bolzen) zählen doppelt für alle, außer Mariagen.</div></div>
                 <div class="rule-card"><div class="rule-title">Spiel-Absage</div><div class="rule-text">Absagender verliert Gebotshöhe, andere erhalten +60 Punkte.</div></div>
                 <div class="rule-card"><div class="rule-title">Ass-Mariage</div><div class="rule-text">Muss explizit angesagt ("gepriesen") werden.</div></div>
                 <div class="rule-card"><div class="rule-title">Gebots-Limit</div><div class="rule-text">Maximalgebot: 120 + Mariage.</div></div>
@@ -172,7 +166,7 @@
                 <div class="rule-card"><div class="rule-title">555 в ноль</div><div class="rule-text">При достижении 555 очков счет обнуляется.</div></div>
                 <div class="rule-card"><div class="rule-title">Три бочки</div><div class="rule-text">Три бочки сбрасывают все очки в ноль.</div></div>
                 <div class="rule-card"><div class="rule-title">Болты на бочке</div><div class="rule-text">На бочке болты не засчитываются.</div></div>
-                <div class="rule-card"><div class="rule-title">Четыре девятки</div><div class="rule-text">Премия, которая не суммируется с очками.</div></div>
+                <div class="rule-card"><div class="rule-title">Четыре девятки: +100 бонус</div><div class="rule-text">Премия в 100 очков (не суммируется с игровыми очками).</div></div>
                 <div class="rule-card"><div class="rule-title">Лимит на бочке</div><div class="rule-text">Макс. 3 чел. Четвертый скидывает всех и остается один.</div></div>
                 <div class="rule-card"><div class="rule-title">Победа</div><div class="rule-text">Для победы необходимо набрать 1001 очко.</div></div>
                 <div class="rule-card"><div class="rule-title">Темная игра</div><div class="rule-text">Двойные очки и болты для всех (кроме хваленок).</div></div>
