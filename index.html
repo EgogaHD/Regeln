@@ -43,6 +43,8 @@
         .flag-btn:active { transform: scale(0.8); }
 
         main { padding: 85px 12px 150px 12px; }
+
+        /* SICHTBARKEIT LOGIK */
         .page-view, .lang-content { display: none; }
         .active-view { display: block !important; }
 
@@ -72,18 +74,8 @@
             animation: popIn 0.4s ease forwards;
         }
 
-        .rule-title {
-            color: var(--accent-color);
-            font-size: 1rem;
-            font-weight: 800;
-            margin-bottom: 4px;
-        }
-
-        .rule-text {
-            color: var(--text-muted);
-            font-size: 0.88rem;
-            line-height: 1.4;
-        }
+        .rule-title { color: var(--accent-color); font-size: 1rem; font-weight: 800; margin-bottom: 4px; }
+        .rule-text { color: var(--text-muted); font-size: 0.88rem; line-height: 1.4; }
 
         /* TURNIER CARDS */
         .match-card {
@@ -92,10 +84,8 @@
             border-radius: 22px; padding: 18px; margin-bottom: 20px;
             animation: popIn 0.5s ease forwards;
         }
-
         .match-title-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; }
         .match-label { font-size: 0.8rem; font-weight: 900; color: var(--text-muted); text-transform: uppercase; }
-
         .player-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
         .mini-card { background: #0f172a; border: 1px solid var(--border-color); border-radius: 12px; padding: 10px; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; font-weight: 600; color: var(--text-muted); }
         .mini-card.winner { border-color: var(--accent-color); background: var(--win-bg); color: var(--text-main); }
@@ -107,7 +97,6 @@
         .player-card { background: var(--card-bg); border-radius: 15px; padding: 12px; border: 1px solid var(--border-color); display: flex; flex-direction: column; align-items: center; min-width: 85px; flex: 1; max-width: 105px; opacity: 0; }
         .active-view .player-card { animation: popIn 0.5s forwards; }
         .tier-1 .player-card { border: 2px solid var(--gold-color); animation: popIn 0.6s forwards 0.8s, championPulse 2s infinite 1.4s; }
-
         .player-name { font-weight: 800; font-size: 0.8rem; text-align: center; }
         .win-dots { display: flex; gap: 4px; margin-top: 6px; }
         .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--border-color); }
@@ -139,38 +128,36 @@
             
             <div id="lang-de" class="lang-content active-view">
                 <h1 class="section-header">📜 REGELN</h1>
-                
-                <div class="rule-card"><div class="rule-title">Bolzen: -120</div><div class="rule-text">Jeder Bolzen führt zu einem Abzug von 120 Punkten.</div></div>
-                <div class="rule-card"><div class="rule-title">Bieten</div><div class="rule-text">Das Reizen/Bieten erfolgt in 5er-Schritten.</div></div>
-                <div class="rule-card"><div class="rule-title">555er-Regel</div><div class="rule-text">Bei Erreichen von exakt 555 Punkten wird der Spielstand auf Null zurückgesetzt.</div></div>
-                <div class="rule-card"><div class="rule-title">Drei Fässer</div><div class="rule-text">Wer drei Mal auf dem Fass landet, fällt auf Null Punkte zurück.</div></div>
-                <div class="rule-card"><div class="rule-title">Bolzen auf dem Fass</div><div class="rule-text">Befindet sich ein Spieler auf dem Fass, werden dort keine Bolzen gezählt.</div></div>
-                <div class="rule-card"><div class="rule-title">Vier Neunen: +100 Bonus</div><div class="rule-text">Vier Neunen auf der Hand ergeben eine Prämie von 100 Punkten (zählen nicht zum Spielstand).</div></div>
-                <div class="rule-card"><div class="rule-title">Fass-Limit</div><div class="rule-text">Maximal 3 Personen auf dem Fass. Kommt ein 4. dazu, wirft er alle anderen runter und bleibt allein.</div></div>
-                <div class="rule-card"><div class="rule-title">Siegbedingung</div><div class="rule-text">Um zu gewinnen, müssen 1001 Punkte erreicht werden.</div></div>
-                <div class="rule-card"><div class="rule-title">Dunkel-Modus (Blind)</div><div class="rule-text">Bei einem Dunkel-Spiel zählen alle Punkte und Bolzen doppelt (außer Mariagen).</div></div>
+                <div class="rule-card"><div class="rule-title">Bolzen: -120</div><div class="rule-text">Ein Bolzen führt zu einem Abzug von 120 Punkten.</div></div>
+                <div class="rule-card"><div class="rule-title">Bieten</div><div class="rule-text">Das Handeln erfolgt in 5er-Schritten.</div></div>
+                <div class="rule-card"><div class="rule-title">555er-Reset</div><div class="rule-text">Bei exakt 555 Punkten wird der Stand auf Null zurückgesetzt.</div></div>
+                <div class="rule-card"><div class="rule-title">Drei Fässer</div><div class="rule-text">Drei Mal auf dem Fass landen setzt die Punkte auf Null zurück.</div></div>
+                <div class="rule-card"><div class="rule-title">Bolzen auf dem Fass</div><div class="rule-text">Auf dem Fass werden keine Bolzen gezählt.</div></div>
+                <div class="rule-card"><div class="rule-title">Vier Neunen: +100 Bonus</div><div class="rule-text">Prämie von 100 Punkten für 4 Neunen (zählt nicht als reguläre Spielpunkte).</div></div>
+                <div class="rule-card"><div class="rule-title">Fass-Limit</div><div class="rule-text">Max. 3 Spieler auf dem Fass. Der 4. wirft alle anderen runter und bleibt allein.</div></div>
+                <div class="rule-card"><div class="rule-title">Siegbedingung</div><div class="rule-text">Zum Sieg werden 1001 Punkte benötigt.</div></div>
+                <div class="rule-card"><div class="rule-title">Dunkel-Modus (Blind)</div><div class="rule-text">Alle Punkte und Bolzen zählen doppelt für alle, außer Mariagen.</div></div>
                 <div class="rule-card"><div class="rule-title">Spiel absagen (Rosipis)</div><div class="rule-text">Der Bieter verliert den Gebotswert, alle anderen Spieler erhalten +60 Punkte.</div></div>
-                <div class="rule-card"><div class="rule-title">Ass-Mariage</div><div class="rule-text">Muss explizit angesagt ("gepriesen") werden, um zu zählen.</div></div>
-                <div class="rule-card"><div class="rule-title">Gebotslimit</div><div class="rule-text">Es darf nicht mehr als 120 + Mariage-Wert geboten werden.</div></div>
-                <div class="rule-card"><div class="rule-title">Dunkel-Voraussetzung</div><div class="rule-text">Mindestens 240 Punkte nötig. Der Spieler am Talon darf die Karten ansehen.</div></div>
-                <div class="rule-card"><div class="rule-title">Kartenverteilung</div><div class="rule-text">Nach Aufnahme des Talons können die Karten beliebig verteilt werden.</div></div>
-                <div class="rule-card"><div class="rule-title">Standard-100</div><div class="rule-text">Geht der Talon an den Bieter, der standardmäßig 100 ruft, wird der Talon nicht gezeigt.</div></div>
-                <div class="rule-card"><div class="rule-title">Fehlgebungen</div><div class="rule-text">Drei schlechte Gebungen führen zu einem Abzug von 100 Punkten.</div></div>
+                <div class="rule-card"><div class="rule-title">Ass-Mariage</div><div class="rule-text">Muss explizit angesagt ("gepriesen") werden.</div></div>
+                <div class="rule-card"><div class="rule-title">Gebots-Limit</div><div class="rule-text">Maximalgebot: 120 + Mariage.</div></div>
+                <div class="rule-card"><div class="rule-title">Dunkel-Voraussetzung</div><div class="rule-text">Mind. 240 Punkte nötig. Der Spieler am Talon darf Karten ansehen.</div></div>
+                <div class="rule-card"><div class="rule-title">Kartenverteilung</div><div class="rule-text">Nach dem Talon können Karten beliebig verteilt werden.</div></div>
+                <div class="rule-card"><div class="rule-title">Standard-100</div><div class="rule-text">Geht der Talon an den 100er-Bietet, wird er nicht gezeigt.</div></div>
+                <div class="rule-card"><div class="rule-title">Fehlgebungen</div><div class="rule-text">Drei schlechte Gebungen führen zu -100 Punkten.</div></div>
 
-                <div class="sub-header">Neu Geben (Bedingungen):</div>
-                <div class="rule-card"><div class="rule-text">• Weniger als 13 Punkte auf der Hand (optional)<br>• Talon-Summe unter 3 Punkte<br>• 4 Asse auf der Hand (und Spieler hat Talon nicht genommen)</div></div>
+                <div class="sub-header">Neu Geben bei:</div>
+                <div class="rule-card"><div class="rule-text">• Hand unter 13 Punkte (optional)<br>• Talon-Summe unter 3 Punkte<br>• 4 Asse auf der Hand (und Spieler hat Talon nicht genommen)</div></div>
             </div>
 
             <div id="lang-ru" class="lang-content">
                 <h1 class="section-header">📜 ПРАВИЛА</h1>
-                
                 <div class="rule-card"><div class="rule-title">Болт: -120</div><div class="rule-text">Каждый болт ведет к списанию 120 очков.</div></div>
                 <div class="rule-card"><div class="rule-title">Торговля</div><div class="rule-text">Торговля ведется с шагом в 5 очков.</div></div>
                 <div class="rule-card"><div class="rule-title">555 в ноль</div><div class="rule-text">При достижении ровно 555 очков счет обнуляется.</div></div>
                 <div class="rule-card"><div class="rule-title">Три бочки</div><div class="rule-text">Три бочки сбрасывают все очки игрока в ноль.</div></div>
                 <div class="rule-card"><div class="rule-title">Болты на бочке</div><div class="rule-text">На бочке болты не засчитываются.</div></div>
                 <div class="rule-card"><div class="rule-title">Четыре девятки: +100 бонус</div><div class="rule-text">Премия в 100 очков (не суммируется с игровыми очками).</div></div>
-                <div class="rule-card"><div class="rule-title">Лимит на бочке</div><div class="rule-text">Макс. 3 чел. Если четвертый залазит на бочку, он всех скидывает и остается один.</div></div>
+                <div class="rule-card"><div class="rule-title">Лимит на бочке</div><div class="rule-text">Макс. 3 чел. Четвертый скидывает всех и остается один.</div></div>
                 <div class="rule-card"><div class="rule-title">Победа</div><div class="rule-text">Для победы необходимо набрать 1001 очко.</div></div>
                 <div class="rule-card"><div class="rule-title">При темной</div><div class="rule-text">Всем двойные очки и болты (кроме хваленок).</div></div>
                 <div class="rule-card"><div class="rule-title">Роспись игры</div><div class="rule-text">У игрока снимается сумма заказа, остальным по 60.</div></div>
@@ -188,7 +175,6 @@
 
         <div id="page-table" class="page-view">
             <h1 class="section-header" id="header-table">📊 TURNIER</h1>
-
             <div class="sub-header" id="label-round1">Runde 1: Ergebnisse</div>
             <div class="match-list">
                 <div class="match-card">
@@ -206,24 +192,14 @@
                     </div>
                 </div>
             </div>
-
             <div class="sub-header" id="label-round2">Runde 2: Zwischenrunde</div>
             <div class="match-list">
-                <div class="match-card">
-                    <div class="match-title-row"><span class="match-label">Tisch A</span></div>
-                    <div class="player-grid"><div class="mini-card empty">X</div><div class="mini-card empty">X</div><div class="mini-card empty">X</div></div>
-                </div>
-                <div class="match-card">
-                    <div class="match-title-row"><span class="match-label">Tisch B</span></div>
-                    <div class="player-grid"><div class="mini-card empty">X</div><div class="mini-card empty">X</div><div class="mini-card empty">X</div></div>
-                </div>
+                <div class="match-card"><div class="match-title-row"><span class="match-label">Tisch A</span></div><div class="player-grid"><div class="mini-card empty">X</div><div class="mini-card empty">X</div><div class="mini-card empty">X</div></div></div>
+                <div class="match-card"><div class="match-title-row"><span class="match-label">Tisch B</span></div><div class="player-grid"><div class="mini-card empty">X</div><div class="mini-card empty">X</div><div class="mini-card empty">X</div></div></div>
             </div>
-
             <div class="sub-header" id="label-final">Finale & Ranking</div>
             <div class="pyramid-container">
-                <div class="pyramid-level tier-1">
-                    <div class="player-card" style="border-style: dashed; opacity: 0.3;"><span class="player-name">CHAMPION</span></div>
-                </div>
+                <div class="pyramid-level tier-1"><div class="player-card" style="border-style: dashed; opacity: 0.3;"><span class="player-name">CHAMPION</span></div></div>
                 <div class="pyramid-level tier-2">
                     <div class="player-card"><span class="player-name">Alexander</span><div class="win-dots"><div class="dot active"></div><div class="dot"></div></div></div>
                     <div class="player-card"><span class="player-name">Egor</span><div class="win-dots"><div class="dot active"></div><div class="dot"></div></div></div>
@@ -231,12 +207,7 @@
                     <div class="player-card" style="border-style: dashed; opacity: 0.5;"><span class="player-name">X</span></div>
                 </div>
                 <div class="pyramid-level tier-3">
-                    <div class="player-card"><span class="player-name">Vladimir</span></div>
-                    <div class="player-card"><span class="player-name">Olga</span></div>
-                    <div class="player-card"><span class="player-name">Alekseij</span></div>
-                    <div class="player-card"><span class="player-name">Tanja</span></div>
-                    <div class="player-card"><span class="player-name">Pavel</span></div>
-                    <div class="player-card"><span class="player-name">Lidija</span></div>
+                    <div class="player-card"><span class="player-name">Vladimir</span></div><div class="player-card"><span class="player-name">Olga</span></div><div class="player-card"><span class="player-name">Alekseij</span></div><div class="player-card"><span class="player-name">Tanja</span></div><div class="player-card"><span class="player-name">Pavel</span></div><div class="player-card"><span class="player-name">Lidija</span></div>
                 </div>
             </div>
         </div>
@@ -253,30 +224,22 @@
 
     <script>
         function switchLang(lang) {
-            // Sprache umschalten
-            document.getElementById('lang-de').style.display = (lang === 'de') ? 'block' : 'none';
-            document.getElementById('lang-ru').style.display = (lang === 'ru') ? 'block' : 'none';
+            // Wir nutzen classList.add/remove für saubere Steuerung ohne Konflikte
+            if(lang === 'de') {
+                document.getElementById('lang-de').classList.add('active-view');
+                document.getElementById('lang-ru').classList.remove('active-view');
+            } else {
+                document.getElementById('lang-ru').classList.add('active-view');
+                document.getElementById('lang-de').classList.remove('active-view');
+            }
             
             const isDe = (lang === 'de');
-            
-            // UI Texte umschalten
             document.getElementById('label-rules').innerText = isDe ? "Regeln" : "Правила";
             document.getElementById('label-table').innerText = isDe ? "Tabelle" : "Таблица";
             document.getElementById('header-table').innerText = isDe ? "📊 TURNIER" : "📊 ТУРНИР";
             document.getElementById('label-round1').innerText = isDe ? "Runde 1: Ergebnisse" : "Раунд 1: Итоги";
             document.getElementById('label-round2').innerText = isDe ? "Runde 2: Zwischenrunde" : "Раунд 2: Промежуточный";
             document.getElementById('label-final').innerText = isDe ? "Finale & Ranking" : "Финал и Рейтинг";
-            
-            // Animation für die neuen Inhalte triggern
-            const activeLangContent = document.querySelector('.lang-content[style*="block"]');
-            if (activeLangContent) {
-                const ruleCards = activeLangContent.querySelectorAll('.rule-card');
-                ruleCards.forEach(card => {
-                    card.style.animation = 'none';
-                    card.offsetHeight;
-                    card.style.animation = null;
-                });
-            }
         }
 
         function showSection(section) {
@@ -289,6 +252,7 @@
             activePage.classList.add('active-view');
             document.getElementById('nav-' + section).classList.add('active-nav');
             
+            // Animation Reset
             const elements = activePage.querySelectorAll('.rule-card, .match-card, .player-card');
             elements.forEach(el => {
                 el.style.animation = 'none';
